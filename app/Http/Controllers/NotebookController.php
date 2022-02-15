@@ -14,9 +14,7 @@ class NotebookController extends Controller
     /**
      * @OA\Get(
      *      path="/api/notebook",
-     *      summary="Sign in",
-     *      description="Notebook Get",
-     *      operationId="authLogin",
+     *      description="Get notebooks",
      *      tags={"notebook"},
      *      @OA\Response(
      *          response=200,
@@ -27,7 +25,7 @@ class NotebookController extends Controller
      *      ),
      *      @OA\Response(
      *          response=422,
-     *          description="Wrong credentials response",
+     *          description="Unprocessable Entity",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="message",
@@ -47,13 +45,11 @@ class NotebookController extends Controller
     /**
      * @OA\Post(
      *      path="/api/notebook",
-     *      summary="Sign in",
-     *      description="Notebook Post",
-     *      operationId="authLogin",
+     *      description="Add notebook",
      *      tags={"notebook"},
      *      @OA\RequestBody(
      *          required=true,
-     *          description="Pass user credentials",
+     *          description="Notebook fields",
      *           @OA\JsonContent(
      *              @OA\Property(property="id", type="integer", readOnly="true", example="1"),
      *              @OA\Property(property="name", type="string", maxLength=32, example="Alexandr"),
@@ -77,7 +73,7 @@ class NotebookController extends Controller
      *      ),
      *      @OA\Response(
      *          response=422,
-     *          description="Wrong credentials response",
+     *          description="Unprocessable Entity",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="message",
@@ -105,9 +101,7 @@ class NotebookController extends Controller
     /**
      * @OA\Get(
      *      path="/api/notebook/{id}",
-     *      summary="Sign in",
-     *      description="Notebook Get by id",
-     *      operationId="authLogin",
+     *      description="Get notebook by id",
      *      tags={"notebook"},
      *      @OA\Parameter(
      *          name="id",
@@ -119,19 +113,6 @@ class NotebookController extends Controller
      *              type="integer",
      *          ),
      *      ),
-     *      @OA\RequestBody(
-     *          required=true,
-     *          description="Enter id",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="id", type="integer", readOnly="true", example="1"),
-     *              @OA\Property(property="name", type="string", maxLength=32, example="Alexandr"),
-     *              @OA\Property(property="company", type="string", maxLength=32, example="ozon"),
-     *              @OA\Property(property="phone", type="string", maxLength=32, example="88004002020"),
-     *              @OA\Property(property="email", type="string", maxLength=32, example="ozon@mail.ru"),
-     *              @OA\Property(property="data", type="string", maxLength=32, example="12.01.1990"),
-     *              @OA\Property(property="foto", type="string", maxLength=32, example="no foto"),
-     *          ),
-     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -139,20 +120,21 @@ class NotebookController extends Controller
      *              @OA\Property(
      *                  property="notebook",
      *                  type="Notebook",
-     *                  ref="#/components/schemas/Notebook"),
+     *                  ref="#/components/schemas/Notebook"
+     *              ),
+     *           )
+     *       ),
+     *       @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Sorry, an error occurred"
      *              )
-     *          ),
-     *          @OA\Response(
-     *              response=422,
-     *              description="Wrong credentials response",
-     *              @OA\JsonContent(
-     *                  @OA\Property(
-     *                      property="message",
-     *                      type="string",
-     *                      example="Sorry, an error occurred")
-     *                  )
-     *              )
-     *          )
+     *           )
+     *        )
      * )
      * @param int $id
      * @return JsonResponse
@@ -170,9 +152,7 @@ class NotebookController extends Controller
     /**
      * @OA\Put(
      *      path="/api/notebook/{id}",
-     *      summary="Sign in",
-     *      description="Notebook Update by id",
-     *      operationId="authLogin",
+     *      description="Update notebook by id",
      *      tags={"notebook"},
      *      @OA\Parameter(
      *         name="id",
@@ -186,7 +166,7 @@ class NotebookController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          description="Enter new data",
+     *          description="Notebook fields",
      *          @OA\JsonContent(
      *              @OA\Property(property="id", type="integer", readOnly="true", example="1"),
      *              @OA\Property(property="name", type="string", maxLength=32, example="Alexandr"),
@@ -210,7 +190,7 @@ class NotebookController extends Controller
      *      ),
      *      @OA\Response(
      *          response=422,
-     *          description="Wrong credentials response",
+     *          description="Unprocessable Entity",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="message",
@@ -249,9 +229,7 @@ class NotebookController extends Controller
     /**
      * @OA\Delete(
      *      path="/api/notebook/{id}",
-     *      summary="Sign in",
-     *      description="Login by email, password",
-     *      operationId="authLogin",
+     *      description="Delete notebook by id",
      *      tags={"notebook"},
      *      @OA\Parameter(
      *          name="id",
@@ -269,12 +247,12 @@ class NotebookController extends Controller
      *      ),
      *      @OA\Response(
      *          response=422,
-     *          description="Wrong credentials response",
+     *          description="Unprocessable Entity",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="message",
      *                  type="string",
-     *                  example="Sorry, wrong email address or password. Please try again"
+     *                  example="Sorry, Sorry, an error occurred"
      *              )
      *          )
      *     )
